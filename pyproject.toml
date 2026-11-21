@@ -1,0 +1,23 @@
+[project]
+name = "autoloop-engineer"
+version = "0.1.0"
+description = "本地项目诊断命令行工具"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pydantic>=2,<3", "rich>=13,<15", "typer>=0.16,<1"]
+
+[project.scripts]
+autoloop = "autoloop.cli.main:app"
+
+[dependency-groups]
+dev = ["pytest>=8,<10"]
+
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/autoloop"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

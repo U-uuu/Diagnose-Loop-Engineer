@@ -1,0 +1,11 @@
+.venv/
+.uv-cache/
+.uv-python/
+.env
+.env
+!.env
+__pycache__/
+.pytest_cache/
+*.py[cod]
+dist/
+data/executions/
