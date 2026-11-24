@@ -1,0 +1,2 @@
+{"timestamp":"2026-01-01T00:00:08Z","level":"ERROR","service":"订单服务","message":"数据库连接失败","exception_type":"SQLException"}
+{"timestamp":"2026-01-01T00:00:09Z","level":"ERROR","service":"订单服务","message":"数据库连接失败","exception_type":"SQLException"}

@@ -1,0 +1,8 @@
+{"timestamp":"2026-01-01T00:00:00Z","level":"INFO","service":"订单服务","message":"服务已启动"}
+{"timestamp":"2026-01-01T00:00:01Z","level":"WARN","service":"订单服务","message":"缓存即将过期"}
+{"timestamp":"2026-01-01T00:00:02Z","level":"ERROR","service":"订单服务","message":"用户 1001 不存在","exception_type":"NullPointerException","stacktrace":"at demo.Order.load(Order.java:21)"}
+{"timestamp":"2026-01-01T00:00:03Z","level":"ERROR","service":"订单服务","message":"用户 1002 不存在","exception_type":"NullPointerException","stacktrace":"at demo.Order.load(Order.java:21)"}
+{"timestamp":"2026-01-01T00:00:04Z","level":"ERROR","service":"用户服务","message":"属性不存在","exception_type":"AttributeError"}
+{"timestamp":"2026-01-01T00:00:05Z","level":"ERROR","service":"同步服务","message":"连接被拒绝","exception_type":"ConnectionError"}
+{"timestamp":"2026-01-01T00:00:06Z","level":"ERROR","service":"同步服务","message":"读取请求超时","exception_type":"TimeoutError"}
+{"timestamp":"2026-01-01T00:00:07Z","level":"ERROR","service":"导入服务","message":"找不到输入文件","exception_type":"FileNotFoundError"}
