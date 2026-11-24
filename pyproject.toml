@@ -8,6 +8,7 @@ dependencies = ["pydantic>=2,<3", "rich>=13,<15", "typer>=0.16,<1"]
 
 [project.scripts]
 autoloop = "autoloop.cli.main:app"
+dle = "autoloop.cli.discovery:app"
 
 [dependency-groups]
 dev = ["pytest>=8,<10"]

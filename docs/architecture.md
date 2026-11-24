@@ -28,6 +28,6 @@ M1 的调用链为 CLI → Application → Discovery。CLI 解析路径、负责
 └── data/executions/
 ```
 
-M1 的实现位于 `cli/`、`application/services/`、`discovery/` 和 `schemas/`。M2 将在 Discovery 中加入日志解析与 Incident 归类，在 Storage 和 Infrastructure 中加入持久化。M3 在 Agents、Graph、Runtime 和 Config 中加入模型角色及编排。Tools 留给 M4–M5 的文件、Git 与测试执行。
+M1 的实现位于 `cli/`、`application/services/`、`discovery/` 和 `schemas/`。M2 在发现层实现日志解析、故障分类与聚合，在 `storage/` 实现 SQLite 持久化，由应用层统一协调事务。M3 在 Agents、Graph、Runtime 和 Config 中加入模型角色及编排。Tools 留给 M4–M5 的文件、Git 与测试执行。
 
 第四节列出的后续模块已建立文件骨架，目前以模块文档字符串说明职责，具体行为随各阶段实现。执行产物位于 `data/executions/`，由 Git 忽略。
