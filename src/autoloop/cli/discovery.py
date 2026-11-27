@@ -14,6 +14,7 @@ from typer.core import TyperGroup
 
 from autoloop.application.services.discovery import scan_discovery, scan_history, scan_issues
 from autoloop.application.services.incidents import IncidentManager
+from autoloop.cli.diagnosis import app as diagnosis_app, diagnose
 from autoloop.config.settings import database_path
 from autoloop.schemas.incident import Category, IncidentStatus, ScanStatus, Severity
 
@@ -32,6 +33,8 @@ scan_app = typer.Typer(cls=ScanGroup, help="扫描日志或查询扫描历史。
 incidents = typer.Typer(help="查询故障与更新状态。", no_args_is_help=True)
 app.add_typer(scan_app, name="scan")
 app.add_typer(incidents, name="incidents")
+app.add_typer(diagnosis_app, name="diagnosis")
+app.command()(diagnose)
 
 Limit = Annotated[int, typer.Option(min=1, max=1000, help="返回记录上限。")]
 Offset = Annotated[int, typer.Option(min=0, help="跳过的记录数。")]

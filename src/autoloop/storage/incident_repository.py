@@ -71,11 +71,13 @@ class IncidentRepository:
         )
 
     def occurrences(
-        self, incident_id: str, limit: int, offset: int,
+        self, incident_id: str, limit: int, offset: int, *, oldest_first: bool = False,
     ) -> list[Occurrence]:
+        direction = "ASC" if oldest_first else "DESC"
         rows = self.db.execute(
-            """SELECT * FROM error_occurrences WHERE incident_id = ?
-            ORDER BY timestamp DESC, id LIMIT ? OFFSET ?""", (incident_id, limit, offset),
+            f"""SELECT * FROM error_occurrences WHERE incident_id = ?
+            ORDER BY timestamp {direction}, id LIMIT ? OFFSET ?""",
+            (incident_id, limit, offset),
         )
         return [Occurrence.model_validate(dict(row)) for row in rows]
 

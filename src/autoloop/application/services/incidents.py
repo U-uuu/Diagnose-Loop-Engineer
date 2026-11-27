@@ -52,6 +52,14 @@ class IncidentManager:
             _require(repository, incident_id)
             return repository.occurrences(incident_id, limit, offset)
 
+    def diagnostic_occurrences(self, incident_id: str, limit: int) -> list[Occurrence]:
+        with connect(self.database) as db, db:
+            db.execute("BEGIN")
+            repository = IncidentRepository(db)
+            recent = repository.occurrences(incident_id, limit, 0)
+            first = repository.occurrences(incident_id, 1, 0, oldest_first=True)
+            return list({item.id: item for item in first + recent}.values())
+
     def set_status(self, incident_id: str, status: IncidentStatus) -> Incident:
         with connect(self.database) as db, db:
             db.execute("BEGIN IMMEDIATE")

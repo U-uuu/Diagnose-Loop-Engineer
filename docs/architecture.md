@@ -2,7 +2,7 @@
 
 M1 的调用链为 CLI → Application → Discovery。CLI 解析路径、负责 Rich 输出并将业务错误转换为退出码。Application 校验扫描根目录并组织扫描。Discovery 枚举日志候选。Schemas 持有各层共享的数据契约。
 
-未来由 Application 组装 LangGraph 工作流、统一模型客户端和持久化适配器。Graph 协调角色和确定性节点。Agent 依赖注入的模型接口与数据契约。工具负责文件、Git 和测试执行，持久化由基础设施实现。
+M3 由应用层调用 Runtime，Runtime 组装 LangGraph、统一模型客户端及仓储。Graph 协调上下文构建、诊断、规划、验证与持久化。Agent 依赖注入的模型接口和共享数据契约。
 
 ## 目录结构
 
@@ -28,6 +28,6 @@ M1 的调用链为 CLI → Application → Discovery。CLI 解析路径、负责
 └── data/executions/
 ```
 
-M1 的实现位于 `cli/`、`application/services/`、`discovery/` 和 `schemas/`。M2 在发现层实现日志解析、故障分类与聚合，在 `storage/` 实现 SQLite 持久化，由应用层统一协调事务。M3 在 Agents、Graph、Runtime 和 Config 中加入模型角色及编排。Tools 留给 M4–M5 的文件、Git 与测试执行。
+M1 的实现位于 `cli/`、`application/services/`、`discovery/` 和 `schemas/`。M2 在发现层实现日志解析、故障分类与聚合，在 `storage/` 实现 SQLite 持久化，由应用层统一协调事务。M3 复用同一数据库保存诊断历史、证据快照和修复建议。Tools 留给 M4–M5 的文件、Git 与测试执行。
 
-第四节列出的后续模块已建立文件骨架，目前以模块文档字符串说明职责，具体行为随各阶段实现。执行产物位于 `data/executions/`，由 Git 忽略。
+M4 及以后预留的模块以文档字符串说明职责。M2 和 M3 的运行数据使用配置目录下的同一 SQLite 数据库。

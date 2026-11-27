@@ -24,3 +24,18 @@ uv run dle scan history
 详见[命令行使用](docs/cli-usage.md)、[故障发现](docs/discovery-design.md)、[故障事件管理](docs/incident-design.md)和[数据库设计](docs/database-design.md)。
 
 架构与后续里程碑见 [总体架构](docs/architecture.md)、[模块设计](docs/module-design.md)、[工作流设计](docs/workflow-design.md)和[工程约束](docs/coding-standards.md)。
+
+## 第三阶段
+
+按[模型配置](docs/llm-configuration.md)设置连接后，从故障列表复制实际编号。将下列占位符替换为故障编号或诊断编号。
+
+```powershell
+uv run dle diagnose <故障编号>
+uv run dle diagnosis history <故障编号>
+uv run dle diagnosis show <诊断编号>
+uv run dle diagnosis plan <诊断编号>
+```
+
+诊断读取并脱敏本地证据，输出根因假设和待审查的修复建议。SQLite 保留每次诊断的状态、结果和计划。详见[诊断工作流](docs/diagnosis-workflow.md)。
+
+运行 `uv run pytest` 可使用 HTTP 模拟验证完整流程。配置真实模型后，可单独运行 `uv run pytest -m live_llm`。
